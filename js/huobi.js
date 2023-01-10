@@ -1441,9 +1441,10 @@ module.exports = class huobi extends Exchange {
     }
 
     async fetchMarketsByTypeAndSubType (type, subType, params = {}) {
-        console.log('fetchMarketsByTypeAndSubType', type)
+        console.log('fetchMarketsByTypeAndSubType', type, subType, params)
         let method = 'spotPublicGetV1CommonSymbols';
         const query = this.omit (params, [ 'type', 'subType' ]);
+        console.log('query', query)
         const spot = (type === 'spot');
         const contract = (type !== 'spot');
         const future = (type === 'future');
