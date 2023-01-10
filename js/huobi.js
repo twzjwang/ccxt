@@ -1441,6 +1441,7 @@ module.exports = class huobi extends Exchange {
     }
 
     async fetchMarketsByTypeAndSubType (type, subType, params = {}) {
+        console.log('fetchMarketsByTypeAndSubType', type)
         let method = 'spotPublicGetV1CommonSymbols';
         const query = this.omit (params, [ 'type', 'subType' ]);
         const spot = (type === 'spot');
@@ -1467,6 +1468,7 @@ module.exports = class huobi extends Exchange {
             }
         }
         const response = await this[method] (this.extend (request, query));
+        console.log('response', response)
         //
         // spot
         //
@@ -1629,6 +1631,7 @@ module.exports = class huobi extends Exchange {
                     symbol += '-' + this.yymmdd (expiry);
                 }
             }
+            console.log('symbol', symbol)
             const contractSize = this.safeNumber (market, 'contract_size');
             let minCost = this.safeNumber (market, 'min-order-value');
             const maxAmount = this.safeNumber (market, 'max-order-amt');
